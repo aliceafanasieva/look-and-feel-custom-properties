@@ -1,401 +1,606 @@
+@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono&family=UnifrakturMaguntia&display=swap');
+
+
+/* Custom Properties */
+:root {
+    /* Fonts */
+    --main-font-stack: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
+    --secundary-font-stack: 'Sometype Mono', monospace;
+    /* Colors */
+    --background-color: rgb(255, 255, 255);
+    --base-text-color: rgb(0,0,0);
+    --active-button-text-color: rgb(255, 255, 255);
+    --active-button-color: rgb(0, 0, 0);
+    --primary-decorative-color: rgb(0, 255, 255);
+    --second-decorative-color: rgb(44, 255, 44);
+    --clr-highlight: rgb(191, 255, 132);
+    --clr-border: rgb(0, 0, 0);
+    /* Titles */
+    --heading-titles-font-size: 1.953rem;
+    --heading-titles-font-weight: 500;
+    --tabs-titles-font-size: 0.97rem;
+    --tabs-titles-font-weight: 400;
+    /* Buttons */
+    --btn-border: 1px solid rgb(0, 0, 0);
+    /* Navigation */
+    --nav-font-size: 0.8rem;
+    --nav-hallen-font-size: 0.88rem;
+    /* Form font size */
+    --checkbox-font-size: 0.9rem;
+    --input-font-size: 0.85rem;
+    --button-font-size: 0.8rem;
+    --small-text-font-size: 0.8rem;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
-    overflow-x: hidden; /*Zorgt ervoor dat je niet horizontaal kan scrollen*/
-    font-family: system-ui, -apple-system, Roboto, 'Open Sans', sans-serif;
-  }
-  
-  :root {
-    font-size: min(calc(1em + 0.1vw), 4em);
-    --color-primary-background: #fff;
-    --color-primary-meta: #f6f6f2;
-    --color-background-menu: #c2edce;
-    --blue: #388087;
-    --black: #000;
-    --border-color: 
-  }
-  
-  body {
-    min-height: 100vh;
-    margin: 0, auto;
-    text-rendering: optimizeLegibility;
-    font-feature-settings: 'kern' 1, 'liga' on, 'dlig' on;
-    --line-height: 1.5;
-    color: var(--black);
-  }
-  
-  body > * {
-    padding: 0 2rem;
-  }
-  
-  header {
-    background-color: white;
-    margin-bottom: 1rem;
-    color: var(--black);
-  }
-  
-  header > h1 {
-    font-size: 1rem;
-    text-align: right;
-    margin-bottom: 5vh;
-  }
-  
-  main {
-    margin-left: 3em;
-    align-self: center;
-  }
-  
-  section {
-    background: var(--color-primary-background);
-    border-radius: 0.2rem;
-    padding: 0.2rem;
-    margin-bottom: 5vh;
-  }
-  section + section {
-    margin-top: .5rem;
-  }
-  
-  h2 {
-    color:var(--blue);
-    margin-bottom: 0.5em;
-  }
-  
-  h3 {
-    border-bottom: DarkSlateGray 1px solid;
-    margin-bottom: 1rem;
-  }
-  
-  h4 {
-    margin-top: 1rem;
-  }
-  
-  p{
-    margin-bottom: .75em;
-    max-width: 50em;
-  }
-  
-  /* Images */
-  .foto{
-    width: 80vw;
-    min-width: 400px;
-    border: #000 1px solid;
-  }
-  
-  /* Link */
-  .link {
-    color: var(--blue);
+    padding: 0;
+    font-family: var(--main-font-stack);
+    scroll-behavior: smooth;
+    background-color: var(--background-color);
     text-decoration: none;
-  }
-  
-  .link:hover{
-    text-decoration: underline;
-  }
-  
-  /* Kleuren */
-  .color-box {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
+    list-style-type: none;
+    color: var(--base-text-color);
+}
+
+body {
+    /*cursor: none;*/
+    margin: 0;
+    min-height: 100vh;
+    min-width: 320px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/*
+#invertedcursor {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  top: var(--y, 0);
+  left: var(--x, 0);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  z-index: 100;
+  transition: transform .2s;
+}*/
+
+/* Heading Styles */
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: var(--heading-titles-font-size);
+    text-transform: uppercase;
+    font-weight: var(--heading-titles-font-weight);
+    margin-bottom: 10px;
+}
+
+/* Navigation bar */
+
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5% 15px;
+    overflow: hidden;
+    background-color: var(--background-color);
+    transition: ease .40s;
+    border-bottom: 1.5px solid var(--clr-border);
+    z-index: 10000;
+}
+
+/* Logo is hidden on the home page, but will be shown in secondary pages */
+.logo {
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: hidden;
+}
+
+.items{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.item {
+    text-transform: uppercase;
+    font-size: var(--nav-font-size);
+    margin: 10px 25px;
     display: inline-block;
-    background-color: var(--color);
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    justify-content: space-between;
+    order: 1;
+}
+
+/* A link to De Hallen website as a way of showing the "connection" between two organisations */
+.dehallen {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: var(--nav-hallen-font-size);
+    margin: 10px 0px 10px 30px;
+    order: 2;
+}
+
+.nav a, .dehallen a {
+    list-style: none;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--base-text-color);
+    white-space: nowrap;
+}
+
+/* Menu icon is hidden on desktop layout, but will appear by screen width < 1020px */
+#menu-icon {
+    color: #000;
+    font-size: 25px;
+    font-weight: 100;
+    cursor: pointer;
+    display: none;
+}
+
+
+/* Making a smooth underline animation */
+
+.items a::after {
+    content: '';
+    width: 0px;
+    height: 1px;
+    display: block;
+    background: var(--base-text-color);
+    transition: 300ms;
+}
+  
+.items a:hover::after {
+    width: 100%;
+}
+
+
+/* Hover for a link to De Hallen */
+
+.dehallen a:hover {
+    color: var(--clr-highlight);
+}
+
+
+/* Hier begin ik met homepagina zelf */
+
+section {
+    padding: 100px 18% 0;
+}
+
+.home {
+    display: inline-block;
+    max-width: 1600px;
+    margin: 0px auto;
+}
+
+
+/* Flex-box met introductie titel, text en plaatje */ 
+
+.intro-box {
+    margin: 0 auto;
+    padding: 0 0 80px;
+    display: flex;
+}
+
+.intro-box-text {
+    flex: 1 1 auto;
+    padding: 0px 30px 0px 0px;
+}
+
+.intro-box-text h1{
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.intro-box-text p {
+    height: 100px;
+    max-width: 29em;
+    font-weight: 400;
+    font-family: var(--secundary-font-stack);
+    font-size: 1.063rem;
+    line-height: 1.5em;
+    text-align: justify;
+    width: 100%;
+}
+
+.img-box{
+    flex: 0 0 350px;
+    margin-top: 30px;
+}
+
+.img-box img{
+    max-width: 100%;
+}
+
+
+/* Hier begint de preview van initiatieven  */
+
+.container-initiatieven {
+    width: 100%;
+    height: 58rem;
+    position: relative;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+/* Tabs die Vraag- Aanbod van initiatieven laten zien */
+
+.tabs-container {
+    display: flex;
+    border-bottom: 2px solid var(--clr-border);
+    margin: 0 0 50px;
+}
+
+.tabs-container button {
+    font-size: var(--tabs-titles-font-size);
+    font-weight: var(--tabs-titles-font-weight);
+    cursor: pointer;
+    border: var(--btn-border);
+    border-bottom: none;
+    outline: none;
+    padding: 10px 32px 15px;
+    text-transform: uppercase;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.tabs-container :nth-child(2) {
+    border-left: none;
+}
+
+.bx{
+    background: transparent;
+    font-size: 23px;
+    margin: 0 1em 0 0;
+    transition: 0.3s;
+}
+
+/* 
+   !!!!!!!!!!!!!!!!!                                                               !!!!!!!!!!!!!!!!!
+   !!!!!!!!!!!!!!!!!   MOET LATER PROBLEEM OPLOSSEN DAT ER GEEN HOVER MEER IS      !!!!!!!!!!!!!!!!!
+   !!!!!!!!!!!!!!!!!                                                               !!!!!!!!!!!!!!!!! 
+ */
+
+.tabs-container button:hover {
+    background-color: var(--active-button-color);
+    color: var(--active-button-text-color);
+}
+
+.tabs-container button:hover .bx{
+    color: var(--active-button-text-color);
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: absolute;
+    transform: translateX(102%);
+    transition: 0.3s;
+}
+
+/* Grid */
+
+.grid-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    width: 100%;
+    column-gap: 7%;
+    row-gap: 10%;
+}
+
+.init_box{
+    transition: 0.3s;
+}
+
+.init_box:hover {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.init_box img {
+    width: 100%;
+}
+
+#content_aanbod {
+    transform: translateX(0px);
+}
+
+#btn_aanbod {
+    background-color: var(--active-button-color);
+    color: var(--active-button-text-color);
+    border: var(--btn-border);
+    border-bottom: none;
+}
+
+#icon_aanbod {
+    color: var(--active-button-text-color);
+    background-color: var(--active-button-color);
+}
+
+/* Button */
+
+.button {
+    padding: 10px 35px;
     text-align: center;
-    color: var(--black);
-    border: 1px solid #000;
-    margin:5vh 1vh;
+    display: inline-block;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: var(--btn-border);
+    text-transform: uppercase;
+    font-size: var(--button-font-size);
   }
+
+.button a {
+    background-color: var(--background-color); 
+    color: var(--base-text-color); 
+}
+
+.button:hover {
+    background-color: var(--active-button-color);
+    color: var(--active-button-text-color);
+}
+
+
+/* Button Alles Bekijken */
+
+.Button-See-all {
+    margin: 0 auto;
+}
+
+.button-box{
+    text-align: center;
+    margin: 20px 50px 100px 50px;
+}
+
+/* Button Submit */
+
+.Button-Submit {
+    border: 0;
+    border-bottom: var(--btn-border);
+    margin-left: 4%;
+    padding: 5px 3px;
+}
+
+.Button-Submit:hover {
+    background-color: transparent;
+    border-bottom: 1px solid var(--clr-highlight);
+    color: var(--clr-highlight);
+}
+
+/* Button Login & Register */
+
+
+.Button_Signin {
+    margin: 0px;
+}
+
+/* Contact Form */
+
+.contact { 
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding: 80px 0;
+    display: flex;
+}
+
+.contact-form, .contact-text {
+    width: 50%;
+    overflow: hidden;
+}
+
+.contact-text p {
+    font-family: var(--secundary-font-stack);
+}
+
+.contact-form form {
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.contact-form input{
+    font-size: var(--input-font-size);
+    border: none;
+    border-bottom: var(--btn-border);
+    outline: none;
+    background-color: transparent;
+    width: 20rem;
+    padding: 5px 10px;
+}
+
+.contact-form button{
+    text-align: left;
+}
+
+
+/* Checkbox */
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 1.5rem;
+    cursor: pointer;
+    font-size: var(--checkbox-font-size);
+}
   
-  .color-box p {
-    margin: 5px 0;
-  }
+  /* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
   
-  .whitecolor{
-    color: var(--white);
-  }
-  
-  /* Code */
-  pre {
-    margin: 1em 0;
-    background: var(--color-background-menu);
-    color: var(--black);
-    font-size: 14px;
-    overflow: auto; /*Zorgt ervoor dat als de te lang is je kan scrollen*/
-  }
-  
-  /* Nav */
-  .mainNav{
-    position: fixed;
-    top: 0.5em;
-  }
-  
-  .sideMenu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
+  /* Create a custom checkbox */
+.checkmark {
+    position: absolute;
     top: 0;
     left: 0;
-    background: var(--color-background-menu);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 1.3em;
-  }
-  .sideMenu a {
-    padding: 0.5em 1em;
-    text-decoration: none;
-    font-size: 0.8em;
-    color: #225035;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+}
+  
+  /* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+  
+  /* When the checkbox is checked, add a black background */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--base-text-color);
+}
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+  /* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
     display: block;
-    transition: 0.3s;
-  }
-  .sideMenu a:hover {
-    color: var(--color-primary-meta);
-  }
-  .menubtn{
-    font-size:2em;
-    cursor:pointer;
-    display:block;
-    margin: 3% 5%;
-  }
+}
   
-  
-  /* Container met voorbeeld van fonts */
-  .box_wrapper {
+  /* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+    left: 4.5px;
+    top: 2px;
+    width: 4px;
+    height: 8.5px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Sign-in scherm Form */
+
+.sign-in {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding: 80px 0;
+    display: flex;
+}
+
+.signin-form, .signin-text {
+    width: 50%;
+    overflow: hidden;
+}
+
+.signin-form {
     display: flex;
     flex-direction: column;
-    padding: 2em;
-    margin: 1em;
-  }
-  
-  .ShortcutTiles {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-  }
-  
-  .ShortcutTile {
-    margin: 1em;
-    height: 15rem;
-    width: 14rem;
-    position: relative;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  .ShortcutTile_inner {
-    position: relative;
-    border-width: 0.5px;
-    border-style: solid;
-    border-image: initial;
-    box-sizing: border-box;
-    height: 100%;
+    align-items: flex-start;
+    margin-right: 1.5rem;
+}
+
+.signin-form label {
+    margin-bottom: 1.3rem;
+}
+
+.signin-form input{
     width: 100%;
+    font-size: var(--input-font-size);
+    border: none;
+    border-bottom: var(--btn-border);
+    outline: none;
+    background-color: transparent;
+    padding: 5px 10px;
+    margin-bottom: 1.3rem;
+}
+
+.signin-buttons {
     display: flex;
-    flex-direction: column;
-  }
-  
-  .ShortcutTile_Image {
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    -webkit-box-align: center;
+    justify-content: space-between;
     align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    margin: 10px;
-  }
-  
-  .ShortcutTile_Body {
-    padding: 16px 16px 0px;
-      margin: 0px 0px 16px;
-      height: 0px;
-      flex: 1 1 0%;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-  }
-  
-  .ShortcutTile_Body_Title {
-    margin: 0px 0px 12px;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    font-weight: 525;
-    font-family: Helvetica, Arial, sans-serif;
-    border: 0px;
-    outline: 0px;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .ShortcutTile_Body_Discription {
-    font-size: 0.75rem;
-    font-weight: 500;
-    font-family: Helvetica, Arial, sans-serif;
-    width: 100%;
-    border: 0px;
-    outline: 0px;
-    flex: 1 1 0%;
-    height: 0px;
-    line-height: 17px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  /* Nav bar voorbeeld */
-  .exampleNav{
-    background-color: var(--blue);
-    text-align: center;
-  }
-  
-  .exampleNav ul{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
-  }
-  
-  .exampleNav ul li{
-    padding: 1em;
-    width: 20vw;
-  }
-  
-  .exampleNav a{
-    color:var(--white);
-    text-decoration: none;
-  }
-  
-  .exampleNav a:hover{
-    color: beige;
-    text-decoration: underline;
-  }
-  
-  /* Cards voorbeeld */
-  a{
-    color: var(--grey);
-    text-decoration: none;
-  }
-  
-  .card{
-    margin: 0 2em;
-    padding: 0 1.5em;
-    display: flex;
-    flex-direction: column; /*zorgt ervoor dat de image en tekst onderelkaar komen te staan in de article*/
-    background: var(--blue);
-    position: relative;
-    width: 20vw;
-    height: 50vh;
-    min-height: 250px;
-  }  
-  
-  .card img{
-    width: 100vw;
-    height: 20vh;
-    align-self: center;
-    min-height: 70px;
-    max-width: 190px;
-  }
-  
-  .card h3{
-    margin-top: 1em;
-    border-bottom: none;
-  }
-  
-  /* Buttons */
-  .button-link {
-    display: block;
-    background-color: var(--blue);
-    color: var(--white);
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    width: 100%;
-    transition: all 0.3s;
-    margin-top: 2vh;
-    margin-bottom: 5vh;
-  }
-  
-  .button-link:hover {
-    background-color: var(--grey);
-    color: var(--black);
-  }
-  
-  button{
-    width: 15vw;
-    background-color: var(--blue);
-    color: var(--white);
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    transition: all 0.3s;
-    border: none;
-    position: relative;
-    margin-top: 2vh;
-    margin-bottom: 5vh;
-  }
-  
-  button:hover{
-    background-color: var(--grey);
-    color: var(--black);
-  }
-  
-  /* Forms */
-  form{
-    margin: auto;
-    width: 400px;
-  }
-  
-  form label{
-    border: none;
-    padding-bottom: 3px;
-    display: flex;
-  }
-  
-  form label:hover{
-    background: #fff;
-    pointer-events: none;
-  }
-    
-  form input {
-    border-radius: 5px;
-    padding-left: 15px;
-    width: 30vw;
-    height: 5vh;
-  }
-    
-  form textarea{
-    border-radius: 5px;
-    padding-left: 15px;
-    width: 30vw;
-    height: 25vh;
-  }
-  
-  .search button{
-    width: auto;
-    height: 5vh;
-    padding: 0.5em;
-    margin-left: 0.5em;
-  }
-  
-  /* Checkbox */
-  label {
-    border: 1px solid var(--grey);
-    padding: 10px;
-    margin: 0 10px 10px;
-    display: block;
-    white-space: nowrap;
-  }
-  
-  label:hover {
-    background: var(--grey);
-    cursor: pointer;
-  }
-  
-  #check label{
-    width: 100px;
-    height: 50px;
-  }
+}
+
+.signin-buttons p{
+    font-size: var(--small-text-font-size);
+}
+
+.signin-text p {
+    font-family: var(--secundary-font-stack);
+}
+
+
+/* Responsive: Tablet */
+
+@media (max-width: 1300px) {
+    .grid-container-initiatieven {
+        display: grid;
+        margin: 55px auto 20%;
+        max-width: 100%;
+        column-gap: 7%;
+        row-gap: 5%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1020px) {
+    #menu-icon {
+        color: var(--base-text-color);
+        font-size: 25px;
+        font-weight: 100;
+        cursor: pointer;
+        display: block;
+    }
+
+    header{
+        position: absolute;
+        top: 0; 
+        right: 0;
+        width: 270px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--background-color);
+        transition: ease .40s;
+        border-bottom: none;
+    }
+
+    .items{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* Responsive: Mobile */
+
+@media screen and (max-width: 600px) {
+    .grid-container-initiatieven {
+        display: grid;
+        margin: 55px auto 20%;
+        max-width: 100%;
+        column-gap: 7%;
+        row-gap: 2%;
+        grid-template-columns: repeat(2, 200px);
+    }
+}
